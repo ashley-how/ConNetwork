@@ -1,9 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>create-event</ion-title>
+    <ion-title>Event</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="createEventForm" (ngSubmit)="createEvent()">
+    <ion-item>
+      <ion-input type="text" formControlName="eventName" placeholder="Event Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea formControlName="Details" placeholder="Details"></ion-textarea>
+    </ion-item>
+    <button ion-button type="submit" [disabled]="!createEventForm.valid">Submit</button>
+  </form>
 </ion-content>

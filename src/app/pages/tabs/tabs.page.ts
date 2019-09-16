@@ -19,5 +19,6 @@ export class TabsPage {
         customId: this.value
       }
     });
+    createEventModal.present();
   }
 }

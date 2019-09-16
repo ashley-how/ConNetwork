@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule' },
   { path: 'messaging', loadChildren: './pages/messaging/messaging.module#MessagingPageModule' },
-  { path: 'create-event', loadChildren: './modal/create-event/create-event.module#CreateEventPageModule' }
+  { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule' }
 ];
 @NgModule({
   imports: [
