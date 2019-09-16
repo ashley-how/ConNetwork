@@ -6,17 +6,17 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="event">
-      <ion-icon name="document"></ion-icon>
+    <ion-tab-button tab="events">
+      <ion-icon name="calendar"></ion-icon>
       <ion-label>Events</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="create">
+    <ion-tab-button tab="create" (click)="openCreateEventModal()">
       <ion-icon name="add"></ion-icon>
       <ion-label>Create Event</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="message">
+    <ion-tab-button tab="messaging">
       <ion-icon name="chatboxes"></ion-icon>
       <ion-label>Messaging</ion-label>
     </ion-tab-button>
