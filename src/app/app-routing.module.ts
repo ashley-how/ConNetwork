@@ -7,7 +7,10 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
-  { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' }
+  { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
+  { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule' },
+  { path: 'messaging', loadChildren: './pages/messaging/messaging.module#MessagingPageModule' },
+  { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule' }
 ];
 @NgModule({
   imports: [

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create an Event</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="createEventForm" (ngSubmit)="createEvent()">
+    <div class="container">
+      <ion-item>
+        <ion-input type="text" formControlName="eventName" placeholder="Event Name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="pin"></ion-icon>
+        <ion-input formControlName="location" placeholder="Location"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="create"></ion-icon>
+        <ion-textarea formControlName="details" placeholder="Details"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Start Date</ion-label>
+        <ion-datetime displayFormat="DD MMM YYYY" formControlName="startDate" [min]="minStartDate"
+          [max]="maxStartDate" placeholder="Start Date"></ion-datetime>
+      </ion-item>
+
+
+
+      <ion-item>
+        <ion-icon name="time"></ion-icon>
+        <ion-label>Start Time</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="startTime" [min]="minStartDate"
+        [max]="maxStartDate" placeholder="Start Time"></ion-datetime>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>End Date</ion-label>
+        <ion-datetime displayFormat="DD MMM YYYY" formControlName="endDate" placeholder="End Date">
+        </ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="time"></ion-icon>
+        <ion-label>End Time</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="endTime" placeholder="End Time">
+        </ion-datetime>
+      </ion-item>
+    </div>
+
+    <ion-button class="create-button" type="submit" [disabled]="!createEventForm.valid">Create</ion-button>
+
+  </form>
+</ion-content>

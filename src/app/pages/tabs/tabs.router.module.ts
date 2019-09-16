@@ -4,7 +4,7 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -18,12 +18,22 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'create',
+        path: 'events',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../create/create.module').then(m => m.CreatePageModule)
+              import('../events/events.module').then(m => m.EventsPageModule)
+          }
+        ]
+      },
+      {
+        path: 'messaging',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../messaging/messaging.module').then(m => m.MessagingPageModule)
           }
         ]
       },
@@ -39,14 +49,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/home',
+        redirectTo: 'home',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tabs/home',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   }
 ];

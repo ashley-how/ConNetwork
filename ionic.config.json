@@ -1,5 +1,7 @@
 {
   "name": "ConNetwork",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
