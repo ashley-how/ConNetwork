@@ -9,9 +9,25 @@
     <ion-item>
       <ion-input type="text" formControlName="eventName" placeholder="Event Name"></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-textarea formControlName="Details" placeholder="Details"></ion-textarea>
+      <ion-input formControlName="location" placeholder="Location"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-textarea formControlName="details" placeholder="Details"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-datetime displayFormat="DD MMM YYYY, HH:mm" formControlName="startDate" [min]="minStartDate"
+        placeholder="Start Date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-datetime displayFormat="DD MMM YYYY, HH:mm" formControlName="endDate" [min]="minEndDate"
+        placeholder="End Date"></ion-datetime>
+    </ion-item>
+
     <button ion-button type="submit" [disabled]="!createEventForm.valid">Submit</button>
   </form>
 </ion-content>

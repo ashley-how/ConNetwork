@@ -8,11 +8,16 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CreateEventPage implements OnInit {
   createEventForm : FormGroup;
+  minStartDate: string = new Date().toISOString();
+  minEndDate: string = new Date().toISOString();
 
   constructor(private fb: FormBuilder) {
     this.createEventForm = this.fb.group({
       eventName: ['', Validators.required],
       details: [''],
+      location: [''],
+      startDate: [''],
+      endDate: ['']
     });
    }
 
