@@ -8,8 +8,14 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CreateEventPage implements OnInit {
   createEventForm : FormGroup;
-  minStartDate: string = new Date().toISOString();
+
+  timezoneOffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+
+  minStartDate: string = (new Date(Date.now() - this.timezoneOffset)).toISOString();
+  maxStartDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();
+
   minEndDate: string = new Date().toISOString();
+  maxEndDate: string = new Date().toISOString();
 
   constructor(private fb: FormBuilder) {
     this.createEventForm = this.fb.group({
@@ -17,11 +23,15 @@ export class CreateEventPage implements OnInit {
       details: [''],
       location: [''],
       startDate: [''],
-      endDate: ['']
+      startTime: [''],
+      endDate: [''],
+      endTime: ['']
     });
    }
 
   ngOnInit() {
+    console.log("Min start date: ", this.minStartDate);
+    console.log("Max start date: ", this.maxStartDate);
   }
 
   createEvent() {
