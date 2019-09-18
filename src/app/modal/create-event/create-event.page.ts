@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-event',
@@ -14,18 +15,18 @@ export class CreateEventPage implements OnInit {
   minStartDate: string = (new Date(Date.now() - this.timezoneOffset)).toISOString();
   maxStartDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();
 
-  minEndDate: string = new Date().toISOString();
+  minEndDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();
   maxEndDate: string = new Date().toISOString();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private modalController: ModalController) {
     this.createEventForm = this.fb.group({
       eventName: ['', Validators.required],
       details: [''],
-      location: [''],
-      startDate: [''],
-      startTime: [''],
-      endDate: [''],
-      endTime: ['']
+      location: ['', Validators.required],
+      startDate: ['', Validators.required],
+      startTime: ['', Validators.required],
+      endDate: ['', Validators.required],
+      endTime: ['', Validators.required]
     });
    }
 
@@ -38,4 +39,7 @@ export class CreateEventPage implements OnInit {
     console.log(this.createEventForm.value)
   }
 
+  closeModal() {
+    this.modalController.dismiss();
+  }
 }

@@ -18,6 +18,7 @@
     "@angular/common": "~8.1.2",
     "@angular/compiler": "~8.1.2",
     "@angular/core": "~8.1.2",
+    "@angular/fire": "^5.2.1",
     "@angular/forms": "~8.1.2",
     "@angular/material": "^8.2.0",
     "@angular/platform-browser": "~8.1.2",
@@ -30,6 +31,7 @@
     "@ionic/angular": "^4.7.1",
     "cordova-plugin-datepicker": "^0.9.3",
     "core-js": "^2.5.4",
+    "firebase": "^6.6.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
