@@ -11,7 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class LoginPage implements OnInit {
   public onLoginForm: FormGroup;
-  public loading: HTMLIonLoadingElement;
+
+  passwordType: string = "password";
+  passwordIcon: string = "eye-off";
 
   constructor(
     public navCtrl: NavController,
@@ -24,11 +26,11 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.onLoginForm = this.formBuilder.group({
-      email: ['', Validators.compose([
+      email: ['ashleyhowjz@gmail.com', Validators.compose([
         Validators.required,
         Validators.email
       ])],
-      password: ['', Validators.compose([
+      password: ['Memories1', Validators.compose([
         Validators.required,
         Validators.minLength(6)
       ])]
@@ -36,24 +38,20 @@ export class LoginPage implements OnInit {
   }
 
   async login(onLoginForm: FormGroup): Promise < void > {
-    /**
-     * Check if the user email exists in the database.
-     */
-
-
-    this.loading = await this.loadingCtrl.create();
-    await this.loading.present();
+    const loader = await this.loadingCtrl.create();
+    await loader.present();
 
     const user = {
       'email': onLoginForm.value.email,
       'password': onLoginForm.value.password
     }
 
-    this.authService.login(user).then(() => {
-      this.loading.dismiss().then(() => {
-        this.navCtrl.navigateRoot('/tabs');
-      })
-    })
+    console.log("User credentials: ", user);
+
+    this.authService.login(user);
+    loader.dismiss().then(() => {
+      this.navCtrl.navigateRoot('/tabs');
+    });
   }
 
   async forgotPass() {
@@ -95,6 +93,11 @@ export class LoginPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
   goToRegister() {

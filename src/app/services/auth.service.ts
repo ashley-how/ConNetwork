@@ -35,6 +35,10 @@ export class AuthService {
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
       .then()
     })
+    .catch(error => {
+      console.error(error);
+      throw new Error(error);
+    })
   }
 
   logout(){

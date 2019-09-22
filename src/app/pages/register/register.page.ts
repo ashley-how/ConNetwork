@@ -75,9 +75,9 @@ export class RegisterPage implements OnInit {
       fullname: this.onRegisterForm.value.fullName,
       email: this.onRegisterForm.value.email,
       password: this.onRegisterForm.value.password
-    }
+    };
 
-    this.authService.register(user)
+    this.authService.register(user);
     loader.onWillDismiss().then(() => {
       this.navCtrl.navigateRoot('/');
     });
