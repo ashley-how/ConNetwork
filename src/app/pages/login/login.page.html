@@ -5,11 +5,11 @@
     <!-- Logo -->
     <div padding-horizontal text-center class="animated fadeInDown">
       <div class="logo"></div>
-      <h4 no-margin>
+      <h1 no-margin>
         <ion-text color="light" class="fw700">
           ConNetwork
         </ion-text>
-      </h4>
+      </h1>
     </div>
 
     <!-- Login form -->
@@ -49,7 +49,7 @@
 
     <div>
       <ion-button icon-left size="medium" expand="full" shape="round" color="dark" 
-      (click)="goToHome()" [disabled]="!onLoginForm.valid" tappable>
+      (click)="login(onLoginForm)" [disabled]="!onLoginForm.valid" tappable>
         <ion-icon name="log-in"></ion-icon>
         Sign in
       </ion-button>

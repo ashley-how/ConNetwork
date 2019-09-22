@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { FirebaseService } from './firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +11,18 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AuthService {
 
   constructor(
-    private afAuth: AngularFireAuth, 
-    private firebaseService: FirebaseService
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore
     ) { }
 
   register(user) {
-    return new Promise<firebase.auth.UserCredential>((resolve, reject) => {
+    return new Promise<firebase.auth.UserCredential>(() => {
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then(
-        res => resolve(res),
-        err => reject(err)),
-        (newUserCredential: firebase.auth.UserCredential) => {
-          firebase.firestore().doc(`/user/${newUserCredential.user.uid}`).set({ user });
+        () => {
+          this.afs.collection(`/user`).add(user);
       }
+      )
     })
     .catch(error => {
       console.error(error);
@@ -32,21 +31,18 @@ export class AuthService {
   }
 
   login(user){
-    return new Promise<firebase.auth.UserCredential>((resolve, reject) => {
+    return new Promise<firebase.auth.UserCredential>(() => {
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-      .then(
-        res => resolve(res),
-        err => reject(err))
+      .then()
     })
   }
 
   logout(){
-    return new Promise((resolve, reject) => {
+    return new Promise(() => {
       this.afAuth.auth.signOut()
       .then(() => {
-        resolve();
       }).catch((error) => {
-        reject();
+        console.log(error);
       });
     })
   }

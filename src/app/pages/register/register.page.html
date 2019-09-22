@@ -72,6 +72,13 @@
           This field is required
         </ion-text>
       </p>
+
+      <p ion-text color="warning" class="text08"
+      *ngIf="onRegisterForm.get('comfirmPassword').touched && onRegisterForm.hasError('mismatch')">
+      <ion-text color="warning">
+        Password does not match
+      </ion-text>
+    </p>
     </form>
 
     <div margin-top>

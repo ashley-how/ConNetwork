@@ -13,8 +13,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../home/home.module').then(m => m.HomePageModule),
-            canActivate: [AuthGuard]
+            loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
           }
         ]
       },
@@ -23,8 +22,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../events/events.module').then(m => m.EventsPageModule),
-            canActivate: [AuthGuard]
+            loadChildren: () => import('../events/events.module').then(m => m.EventsPageModule)
           }
         ]
       },
@@ -33,8 +31,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../messaging/messaging.module').then(m => m.MessagingPageModule),
-            canActivate: [AuthGuard]
+            loadChildren: () => import('../messaging/messaging.module').then(m => m.MessagingPageModule)
           }
         ]
       },
@@ -43,8 +40,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule),
-            canActivate: [AuthGuard]
+            loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
           }
         ]
       },
