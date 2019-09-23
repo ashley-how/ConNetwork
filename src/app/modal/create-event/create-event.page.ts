@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
+import { EventsService } from 'src/app/services/events.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-create-event',
@@ -15,10 +17,11 @@ export class CreateEventPage implements OnInit {
   minStartDate: string = (new Date(Date.now() - this.timezoneOffset)).toISOString();
   maxStartDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();
 
-  minEndDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();
-  maxEndDate: string = new Date().toISOString();
+  minEndDate: string = (new Date(Date.now() - this.timezoneOffset)).toISOString();
+  maxEndDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();
 
-  constructor(private fb: FormBuilder, private modalController: ModalController) {
+  constructor(private fb: FormBuilder, private modalController: ModalController,
+    private eventService: EventsService, private loadingCtrl: LoadingController) {
     this.createEventForm = this.fb.group({
       eventName: ['', Validators.required],
       details: [''],
@@ -35,8 +38,19 @@ export class CreateEventPage implements OnInit {
     console.log("Max start date: ", this.maxStartDate);
   }
 
-  createEvent() {
+  async createEvent() {
+    const loader = await this.loadingCtrl.create();
+    await loader.present();
+
+    this.createEventForm.get("startDate").patchValue(moment(new Date(this.createEventForm.get("startDate").value)).format("DD MMM YYYY"));
+    this.createEventForm.get("endDate").patchValue(moment(new Date(this.createEventForm.get("endDate").value)).format("DD MMM YYYY"));
+    this.createEventForm.get("startTime").patchValue(moment(new Date(this.createEventForm.get("startTime").value)).format("HH:MM"));
+    this.createEventForm.get("endTime").patchValue(moment(new Date(this.createEventForm.get("endTime").value)).format("HH:MM"));
     console.log(this.createEventForm.value)
+   
+    this.eventService.addEvent(this.createEventForm.value);
+    loader.dismiss();
+    this.closeModal();
   }
 
   closeModal() {

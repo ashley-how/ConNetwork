@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { EventsService, Event } from 'src/app/services/events.service';
+import { EventsService } from 'src/app/services/events.service';
 import { Observable } from 'rxjs';
+import { Event } from '../../model/Event';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 
 export class HomePage {
-  private events: Observable<Event[]>;
+  public events: Observable<Event[]>;
 
   constructor(
     public navCtrl: NavController, private eventsService: EventsService) { }
@@ -18,29 +19,5 @@ export class HomePage {
     ngOnInit() {
       this.events = this.eventsService.getEvents();
     }
-  // async searchFilter () {
-  //   const modal = await this.modalCtrl.create({
-  //     component: SearchFilterPage
-  //   });
-  //   return await modal.present();
-  // }
-
-  // async presentImage(image: any) {
-  //   const modal = await this.modalCtrl.create({
-  //     component: ImagePage,
-  //     componentProps: { value: image }
-  //   });
-  //   return await modal.present();
-  // }
-
-  // async notifications(ev: any) {
-  //   const popover = await this.popoverCtrl.create({
-  //     component: NotificationsComponent,
-  //     event: ev,
-  //     animated: true,
-  //     showBackdrop: true
-  //   });
-  //   return await popover.present();
-  // }
 
 }

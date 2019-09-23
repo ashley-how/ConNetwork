@@ -20,7 +20,7 @@ export class AuthService {
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then(
         () => {
-          this.afs.collection(`/user`).add(user);
+          this.afs.collection(`users`).add(user);
       }
       )
     })
