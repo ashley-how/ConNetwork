@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -40,7 +42,16 @@ export class RegisterPage implements OnInit {
       'comfirmPassword': [null, Validators.compose([
         Validators.required
       ])]
+    },
+    {
+      'validator': this.checkPasswords
     });
+  }
+
+  checkPasswords( group: FormGroup) {
+    let password = group.get("password").value;
+    let confirmPassword = group.get("comfirmPassword").value;
+    return password == confirmPassword ? null : {'mismatch': true};
   }
 
   togglePasswordVisibility() {
@@ -53,16 +64,24 @@ export class RegisterPage implements OnInit {
     this.confirmPasswordIcon = this.confirmPasswordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
-  // async signUp() {
-  //   const loader = await this.loadingCtrl.create({
-  //     duration: 2000
-  //   });
+  async signUp() {
+    const loader = await this.loadingCtrl.create({
+      duration: 2000
+    });
 
-  //   loader.present();
-  //   loader.onWillDismiss().then(() => {
-  //     this.navCtrl.navigateRoot('/home');
-  //   });
-  // }
+    await loader.present();
+
+    var user = {
+      fullname: this.onRegisterForm.value.fullName,
+      email: this.onRegisterForm.value.email,
+      password: this.onRegisterForm.value.password
+    };
+
+    this.authService.register(user);
+    loader.onWillDismiss().then(() => {
+      this.navCtrl.navigateRoot('/');
+    });
+  }
 
   goToLogin() {
     this.navCtrl.navigateRoot('/');

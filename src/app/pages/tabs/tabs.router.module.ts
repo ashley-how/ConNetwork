@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthGuard } from 'src/app/services/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,8 +13,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () =>
-              import('../home/home.module').then(m => m.HomePageModule)
+            loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
           }
         ]
       },
@@ -22,8 +22,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () =>
-              import('../events/events.module').then(m => m.EventsPageModule)
+            loadChildren: () => import('../events/events.module').then(m => m.EventsPageModule)
           }
         ]
       },
@@ -32,8 +31,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () =>
-              import('../messaging/messaging.module').then(m => m.MessagingPageModule)
+            loadChildren: () => import('../messaging/messaging.module').then(m => m.MessagingPageModule)
           }
         ]
       },
@@ -42,8 +40,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () =>
-              import('../profile/profile.module').then(m => m.ProfilePageModule)
+            loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
           }
         ]
       },
