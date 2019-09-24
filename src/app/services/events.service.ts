@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Event } from '../model/Event';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class EventsService {
   private events: Observable < Event[] > ;
   private eventCollection: AngularFirestoreCollection < Event > ;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private authService: AuthService) {
     this.eventCollection = this.afs.collection < Event > ('events');
     this.events = this.eventCollection.snapshotChanges().pipe(
       map(actions => {
@@ -43,22 +44,22 @@ export class EventsService {
   }
 
   addEvent(event: Event): Promise < DocumentReference > {
+    var user = this.authService.getCurrentUser();
+    event.createdBy = user.uid;
+    event.participants = [];
     return this.eventCollection.add(event);
   }
 
   updateEvent(event: Event): Promise < void > {
-    return this.eventCollection.doc(event.id).update({
-      name: event.name,
-      details: event.details,
-      location: event.location,
-      startDate: event.startDate,
-      startTime: event.startTime,
-      endDate: event.endDate,
-      endTime: event.endTime
-    });
+    return this.eventCollection.doc(event.id).update(event);
   }
 
   deleteEvent(id: string): Promise < void > {
     return this.eventCollection.doc(id).delete();
+  }
+
+  addParticipant(event: Event, id: string) : Promise < void > {
+    event.participants.push(id);
+    return this.eventCollection.doc(event.id).update(event);
   }
 }

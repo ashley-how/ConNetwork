@@ -39,6 +39,12 @@
       <div class="row">
         <ion-icon name="document"></ion-icon> {{ event.details }}
       </div>
+
+      <div class="row">
+          <ion-button type="button" (click)="registerForEvent(event)">
+            Register
+          </ion-button>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

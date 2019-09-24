@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',

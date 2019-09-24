@@ -1,3 +1,5 @@
+import { initializeApp } from 'firebase';
+
 export interface Event {
     id: string;
     name: string;
@@ -7,7 +9,7 @@ export interface Event {
     startTime: Date;
     endDate: Date;
     endTime: Date;
-    participants: Array<string>;
+    participants: string[];
     createdBy: string;
     updatedBy: string;
 }

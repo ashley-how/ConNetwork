@@ -28,7 +28,7 @@ import { CreateEventPageModule } from '../app/modal/create-event/create-event.mo
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    CreateEventPageModule,
+    CreateEventPageModule,    
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule

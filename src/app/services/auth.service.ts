@@ -4,6 +4,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,9 @@ export class AuthService {
         console.log(error);
       });
     })
+  }
+
+  getCurrentUser() {
+    return firebase.auth().currentUser;
   }
 }
