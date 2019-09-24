@@ -10,14 +10,11 @@ import { CreateEventPage } from 'src/app/modal/create-event/create-event.page';
 export class TabsPage {
   value = 0;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalCtrl: ModalController) {}
 
   async openCreateEventModal() {
-    const createEventModal = await this.modalController.create({
-      component: CreateEventPage,
-      componentProps: {
-        customId: this.value
-      }
+    const createEventModal = await this.modalCtrl.create({
+      component: CreateEventPage
     });
     createEventModal.present();
   }

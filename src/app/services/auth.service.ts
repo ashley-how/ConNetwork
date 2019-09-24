@@ -4,6 +4,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthService {
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then(
         () => {
-          this.afs.collection(`/user`).add(user);
+          this.afs.collection(`users`).add(user);
       }
       )
     })
@@ -49,5 +50,9 @@ export class AuthService {
         console.log(error);
       });
     })
+  }
+
+  getCurrentUser() {
+    return firebase.auth().currentUser;
   }
 }

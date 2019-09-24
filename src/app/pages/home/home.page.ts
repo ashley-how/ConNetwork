@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { EventsService, Event } from 'src/app/services/events.service';
+import { NavController, ModalController } from '@ionic/angular';
+import { EventsService } from 'src/app/services/events.service';
 import { Observable } from 'rxjs';
+import { Event } from '../../model/Event';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,37 +12,18 @@ import { Observable } from 'rxjs';
 })
 
 export class HomePage {
-  private events: Observable<Event[]>;
+  public events: Observable<Event[]>;
 
   constructor(
-    public navCtrl: NavController, private eventsService: EventsService) { }
+    public navCtrl: NavController, private eventsService: EventsService,
+    private authService: AuthService) { }
 
     ngOnInit() {
       this.events = this.eventsService.getEvents();
     }
-  // async searchFilter () {
-  //   const modal = await this.modalCtrl.create({
-  //     component: SearchFilterPage
-  //   });
-  //   return await modal.present();
-  // }
 
-  // async presentImage(image: any) {
-  //   const modal = await this.modalCtrl.create({
-  //     component: ImagePage,
-  //     componentProps: { value: image }
-  //   });
-  //   return await modal.present();
-  // }
-
-  // async notifications(ev: any) {
-  //   const popover = await this.popoverCtrl.create({
-  //     component: NotificationsComponent,
-  //     event: ev,
-  //     animated: true,
-  //     showBackdrop: true
-  //   });
-  //   return await popover.present();
-  // }
-
+    registerForEvent(event: Event) {
+      var user = this.authService.getCurrentUser();
+      this.eventsService.addParticipant(event, user.uid);
+    }
 }

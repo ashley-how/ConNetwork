@@ -23,5 +23,28 @@
 </ion-header>
 
 <ion-content>
+  <ion-card *ngFor="let event of events | async">
+    <ion-card-header>
+      <ion-card-title>{{ event.eventName }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="row">
+        <ion-icon name="pin"></ion-icon> {{ event.location }}
+      </div>
 
+      <div class="row">
+        <ion-icon name="calendar"></ion-icon> {{ event.startDate }} - {{ event.endDate }}, {{ event.startTime }} hrs
+      </div>
+
+      <div class="row">
+        <ion-icon name="document"></ion-icon> {{ event.details }}
+      </div>
+
+      <div class="row">
+          <ion-button type="button" (click)="registerForEvent(event)">
+            Register
+          </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
