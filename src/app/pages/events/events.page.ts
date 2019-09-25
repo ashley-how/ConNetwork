@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EventsService } from 'src/app/services/events.service';
+import { Observable } from 'rxjs';
+import { Event } from '../../model/Event';
 
 @Component({
   selector: 'app-events',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events.page.scss'],
 })
 export class EventsPage implements OnInit {
+  myEvents: Event[] = [];
 
-  constructor() { }
+  constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
+    this.eventsService.getEventByUser().subscribe(events => {
+      console.log(events);
+      this.myEvents = events;
+    });
+    console.log(this.myEvents);
   }
 
 }
