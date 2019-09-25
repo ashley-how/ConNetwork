@@ -62,4 +62,25 @@ export class EventsService {
     event.participants.push(id);
     return this.eventCollection.doc(event.id).update(event);
   }
+
+  getEventByUser(): Observable < Event[] > {
+    var user = this.authService.getCurrentUser();
+    var query = this.afs.collection<Event>("events", ref => 
+      ref.where("participants", "array-contains", user.uid));
+
+    var events = query.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {
+            id,
+            ...data
+          };
+        });
+      })
+    );
+    
+    return events;
+  }
 }
