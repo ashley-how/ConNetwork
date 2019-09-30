@@ -14,11 +14,10 @@ export class EventsPage implements OnInit {
   constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
-    this.eventsService.getEventByUser().subscribe(events => {
+    this.eventsService.getEventsByUser().subscribe(events => {
       console.log(events);
       this.myEvents = events;
-    });
-    console.log(this.myEvents);
+    });   
   }
 
 }
