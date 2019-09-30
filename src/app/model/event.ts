@@ -1,5 +1,3 @@
-import { initializeApp } from 'firebase';
-
 export interface Event {
     id: string;
     name: string;

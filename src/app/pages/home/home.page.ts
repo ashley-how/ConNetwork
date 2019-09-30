@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class HomePage {
   events: Event[] = [];
+  myEvents: Event[] = [];
 
   constructor(
     public navCtrl: NavController, private eventsService: EventsService,
@@ -20,18 +21,31 @@ export class HomePage {
     private toastCtrl: ToastController) { }
 
     ngOnInit() {
-      this.eventsService.getEvents().subscribe(events => {
-        this.events = events;
+      this.eventsService.getEventsByUser().subscribe(myEvents => {
+        console.log("My registered events: ", myEvents);
+        this.myEvents = myEvents;
+
+        this.eventsService.getEvents().subscribe(events => {
+          console.log("All events: ", events);
+          this.events = events;
+        });
       });
     }
 
+    isEventRegistered(event: Event): boolean {
+      return this.eventsService.isEventRegisteredByUser(event);
+    }
+
     async registerForEvent(event: Event) {
+      console.log("Event to register: ", event);
       const loader = await this.loadingCtrl.create();
       await loader.present();
 
       var user = this.authService.getCurrentUser();
-      this.eventsService.addParticipant(event, user.uid);
-
+      this.eventsService.addParticipant(event.id, user.uid);
+      console.log("Index to remove:", this.events.findIndex(evt => evt.id == event.id));
+      this.events.splice(this.events.findIndex(evt => evt.id == event.id), 1);
+      console.log(this.events);
       loader.dismiss();
 
       const toast = await this.toastCtrl.create({

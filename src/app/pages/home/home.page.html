@@ -44,9 +44,15 @@
       </div>
 
       <div class="row">
-          <ion-button expand="full" color="light" type="button" (click)="registerForEvent(event)">
+          <ion-button *ngIf="!isEventRegistered(event); else elseBlock" expand="full" type="button" (click)="registerForEvent(event)">
             Register
           </ion-button>
+
+          <ng-template #elseBlock>
+            <ion-button expand="full" color="light" type="button" disabled>
+              Registered
+            </ion-button>
+          </ng-template>
       </div>
     </ion-card-content>
   </ion-card>

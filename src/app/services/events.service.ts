@@ -15,7 +15,10 @@ export class EventsService {
 
   constructor(private afs: AngularFirestore, private authService: AuthService) {
     this.eventCollection = this.afs.collection < Event > ('events');
-    this.events = this.eventCollection.snapshotChanges().pipe(
+  }
+
+  getEvents(): Observable < Event[] > {
+    return this.eventCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -27,10 +30,6 @@ export class EventsService {
         });
       })
     );
-  }
-
-  getEvents(): Observable < Event[] > {
-    return this.events;
   }
 
   getEvent(id: string): Observable < Event > {
@@ -43,10 +42,32 @@ export class EventsService {
     );
   }
 
+  getEventsByUser(): Observable < Event[] > {
+    var user = this.authService.getCurrentUser();
+    var query = this.afs.collection<Event>("events", ref => 
+      ref.where("participants", "array-contains", user.uid));
+
+    var myEvents = query.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {
+            id,
+            ...data
+          };
+        });
+      })
+    )
+    
+    return myEvents;
+  }
+
   addEvent(event: Event): Promise < DocumentReference > {
     var user = this.authService.getCurrentUser();
     event.createdBy = user.uid;
     event.participants = [];
+    event.participants.push(user.uid);
     return this.eventCollection.add(event);
   }
 
@@ -58,29 +79,16 @@ export class EventsService {
     return this.eventCollection.doc(id).delete();
   }
 
-  addParticipant(event: Event, id: string) : Promise < void > {
-    event.participants.push(id);
-    return this.eventCollection.doc(event.id).update(event);
+  addParticipant(eventId: string, userId: string) : Promise < void > {
+    this.getEvent(eventId).subscribe(event => {
+      event.participants.push(userId);
+      this.eventCollection.doc(eventId).update(event);
+    });
+    return;
   }
 
-  getEventByUser(): Observable < Event[] > {
+  isEventRegisteredByUser(event: Event): boolean {
     var user = this.authService.getCurrentUser();
-    var query = this.afs.collection<Event>("events", ref => 
-      ref.where("participants", "array-contains", user.uid));
-
-    var events = query.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return {
-            id,
-            ...data
-          };
-        });
-      })
-    );
-    
-    return events;
+    return event.participants.includes(user.uid);
   }
 }
