@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule', canActivate: [AuthGuard]},
   { path: 'messaging', loadChildren: './pages/messaging/messaging.module#MessagingPageModule', canActivate: [AuthGuard] },
-  { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule', canActivate: [AuthGuard] }
+  { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule', canActivate: [AuthGuard] },
+  { path: 'event-info', loadChildren: './modal/event-info/event-info.module#EventInfoPageModule' }
 ];
 @NgModule({
   imports: [

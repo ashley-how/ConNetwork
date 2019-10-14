@@ -1,13 +1,15 @@
 <ion-content padding class="animated fadeIn login auth-page">
-  <div class="theme-bg"></div>
   <div class="auth-content">
 
     <!-- Logo -->
     <div padding-horizontal text-center class="animated fadeInDown">
-      <div class="logo"></div>
+      <div class="logo">
+        <img src="/assets/icon/ConNetwork logo.jpg" 
+          style="height: 100px; border-radius: 50%">
+      </div>
       <h1 no-margin>
-        <ion-text color="light" class="fw700">
-          ConNetwork
+        <ion-text class="fw700" color="secondary" style="font-family: monospace">
+          CONNETWORK
         </ion-text>
       </h1>
     </div>
@@ -43,7 +45,7 @@
     </form>
 
     <p text-right tappable (click)="forgotPass()" class="paz">
-      <ion-text color="light">
+      <ion-text>
         <strong>Forgot Password?</strong>
       </ion-text>
     </p>
@@ -56,7 +58,7 @@
       </ion-button>
 
       <p text-center>
-        <ion-text color="light">
+        <ion-text>
           Or sign in with:
         </ion-text>
       </p>
@@ -70,7 +72,7 @@
           </ion-col>
 
           <ion-col size="6">
-              <ion-button shape="round" expand="full" color="secondary">
+              <ion-button shape="round" expand="full" color="secondary" (click)="linkedinLogin()">
                 <ion-icon slot="icon-only" name="logo-linkedin"></ion-icon>
               </ion-button>
             </ion-col>
@@ -82,7 +84,7 @@
     <!-- Other links -->
     <div text-center margin-top>
       <span (click)="goToRegister()" class="paz" tappable>
-        <ion-text color="light">
+        <ion-text>
           New here? <strong>Register</strong> here
         </ion-text>
       </span>

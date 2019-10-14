@@ -12,7 +12,10 @@ export const environment = {
     storageBucket: "connetwork-fc9f8.appspot.com",
     messagingSenderId: "597986431874",
     appId: "1:597986431874:web:6fa9c4323b41e79497759b"
-  }
+  },
+  linkedinClientId: '78nqf8x4o1hgk0',
+  linkedinClientSecret: 'A17ZxYs06mO1SSr2',
+  FIREBASE_TOKEN: '1/hjbRx2kUxdssvgGg_jzcmql_DmmEhyZJ1gkjpyBKZID0IpBrtt7hkOejMQ0RI4xS'
 };
 
 /*
