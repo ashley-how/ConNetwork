@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class ProfilePage {
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private navCtrl: NavController
+    ) {}
 
+  logout() {
+    this.authService.logout().then(() => {
+      this.navCtrl.navigateRoot('~/');
+    });
+  }
 }

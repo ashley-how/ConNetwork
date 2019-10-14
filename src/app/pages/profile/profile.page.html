@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      My Profile
+    <ion-title color="secondary" style="font-family: monospace">
+      MY PROFILE
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-button class="logout-button" color="danger" expand="full" (click)="logout()">
+      Logout
+    </ion-button>
+</ion-content>
