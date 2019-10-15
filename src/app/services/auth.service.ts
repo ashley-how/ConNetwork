@@ -12,6 +12,7 @@ import { Platform } from '@ionic/angular';
   providedIn: 'root'
 })
 export class AuthService {
+  isLoggedIn = false;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -35,22 +36,12 @@ export class AuthService {
   }
 
   login(user) {
-    return new Promise <firebase.auth.UserCredential> (() => {
-        firebase.auth().signInWithEmailAndPassword(user.email, user.password);
-      })
-      .catch(error => {
-        console.error(error);
-        throw new Error(error);
-      })
+    return firebase.auth()
+      .signInWithEmailAndPassword(user.email, user.password);
   }
 
   logout() {
-    return new Promise(() => {
-      this.afAuth.auth.signOut()
-        .then(() => {}).catch((error) => {
-          console.log(error);
-        });
-    })
+    return this.afAuth.auth.signOut();
   }
 
   getCurrentUser() {
