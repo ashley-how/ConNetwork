@@ -54,9 +54,12 @@ export class LoginPage implements OnInit {
 
     console.log("User credentials: ", user);
 
-    this.authService.login(user);
-    loader.dismiss().then(() => {
-      this.navCtrl.navigateRoot('/tabs');
+    this.authService.login(user)
+    .then(() => {
+      loader.dismiss().then(() => {
+        console.log("Logging in...");
+        this.navCtrl.navigateForward('/tabs');
+      });
     });
   }
 
@@ -106,7 +109,7 @@ export class LoginPage implements OnInit {
                   this.createUser(name, email, email)
                     .then(() => {
                       loader.dismiss();
-                      this.navCtrl.navigateRoot('/tabs');
+                      this.navCtrl.navigateForward('/tabs');
                     })
                     .catch(err => {
                       console.error(err);
@@ -157,7 +160,7 @@ export class LoginPage implements OnInit {
                 resolve("Done");
               });
             }
-            this.navCtrl.navigateRoot('/tabs');
+            this.navCtrl.navigateForward('/tabs');
           });
       });
     });
