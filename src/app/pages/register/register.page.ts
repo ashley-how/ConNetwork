@@ -72,7 +72,7 @@ export class RegisterPage implements OnInit {
     await loader.present();
 
     var user = {
-      fullname: this.onRegisterForm.value.fullName,
+      fullName: this.onRegisterForm.value.fullName,
       email: this.onRegisterForm.value.email,
       password: this.onRegisterForm.value.password
     };

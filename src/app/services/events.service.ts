@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Event } from '../model/Event';
-import { AuthService } from './auth.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class EventsService {
   private events: Observable < Event[] > ;
   private eventCollection: AngularFirestoreCollection < Event > ;
 
-  constructor(private afs: AngularFirestore, private authService: AuthService) {
+  constructor(private afs: AngularFirestore, private userService: UserService) {
     this.eventCollection = this.afs.collection < Event > ('events');
   }
 
@@ -43,7 +43,7 @@ export class EventsService {
   }
 
   getEventsByUser(): Observable < Event[] > {
-    var user = this.authService.getCurrentUser();
+    var user = this.userService.getCurrentUser();
     var query = this.afs.collection<Event>("events", ref => 
       ref.where("participants", "array-contains", user.uid));
 
@@ -64,7 +64,7 @@ export class EventsService {
   }
 
   addEvent(event: Event): Promise < DocumentReference > {
-    var user = this.authService.getCurrentUser();
+    var user = this.userService.getCurrentUser();
     event.createdBy = user.uid;
     event.participants = [];
     event.participants.push(user.uid);
@@ -88,7 +88,7 @@ export class EventsService {
   }
 
   isEventRegisteredByUser(event: Event): boolean {
-    var user = this.authService.getCurrentUser();
+    var user = this.userService.getCurrentUser();
     return event.participants.includes(user.uid);
   }
 }
