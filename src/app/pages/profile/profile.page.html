@@ -1,13 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="secondary" style="font-family: monospace">
+    <ion-title color="secondary" style="font-family: monospace; text-align: center">
       MY PROFILE
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-button class="logout-button" color="danger" expand="full" (click)="logout()">
-      Logout
-    </ion-button>
+  <div class="list">
+    <form>
+      <br>
+      <div class="top">
+        <div class="profile-picture big-profile-picture">
+          <img id="img" />
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="profile-name">
+    <p>{{ currentUser.displayName }}</p>
+  </div>
+
+  <ion-button class="logout-button" color="danger" expand="full" (click)="logout()">
+    Logout
+  </ion-button>
 </ion-content>

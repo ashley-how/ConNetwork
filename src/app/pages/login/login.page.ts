@@ -55,11 +55,19 @@ export class LoginPage implements OnInit {
     console.log("User credentials: ", user);
 
     this.authService.login(user)
-    .then(() => {
-      loader.dismiss().then(() => {
-        console.log("Logging in...");
-        this.navCtrl.navigateForward('/tabs');
-      });
+    .then(result => {
+      if (result) {
+        loader.dismiss().then(() => {
+          console.log("Logging in...");
+          this.navCtrl.navigateForward('/tabs');
+        });
+      }
+
+      else {
+        loader.dismiss().then(() => {
+          this.navCtrl.navigateRoot('/');
+        });
+      }
     });
   }
 

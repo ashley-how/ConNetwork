@@ -5,15 +5,11 @@ import 'firebase/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { HTTP } from "@ionic-native/http/ngx";
-import { environment } from 'src/environments/environment';
-import { Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn = false;
-
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -23,11 +19,6 @@ export class AuthService {
   register(user) {
     return new Promise < firebase.auth.UserCredential > (() => {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-          .then(
-            () => {
-              this.afs.collection(`users`).add(user);
-            }
-          )
       })
       .catch(error => {
         console.error(error);
@@ -37,15 +28,21 @@ export class AuthService {
 
   login(user) {
     return firebase.auth()
-      .signInWithEmailAndPassword(user.email, user.password);
+      .signInWithEmailAndPassword(user.email, user.password)
+        .catch(error => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+        });
   }
 
   logout() {
     return this.afAuth.auth.signOut();
-  }
-
-  getCurrentUser() {
-    return firebase.auth().currentUser;
   }
 
   /**

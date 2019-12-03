@@ -4,6 +4,7 @@ import { EventsService } from 'src/app/services/events.service';
 import { Observable } from 'rxjs';
 import { Event } from '../../model/Event';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController, private eventsService: EventsService,
     private authService: AuthService, private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController) { }
+    private toastCtrl: ToastController, private userService: UserService) { }
 
     ngOnInit() {
       this.eventsService.getEventsByUser().subscribe(myEvents => {
@@ -41,7 +42,7 @@ export class HomePage {
       const loader = await this.loadingCtrl.create();
       await loader.present();
 
-      var user = this.authService.getCurrentUser();
+      var user = this.userService.getCurrentUser();
       this.eventsService.addParticipant(event.id, user.uid);
       console.log("Index to remove:", this.events.findIndex(evt => evt.id == event.id));
       this.events.splice(this.events.findIndex(evt => evt.id == event.id), 1);

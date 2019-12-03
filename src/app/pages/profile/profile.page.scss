@@ -1,3 +1,30 @@
+.profile-picture {
+    border: 3px solid rgba(0, 0, 0, 0.25);
+    padding: 3px;
+    border-radius: 100%;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 0% auto;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.profile-picture img {
+    object-fit: cover;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    image-orientation: from-image;
+}
+
+.profile-name {
+    text-align: center;
+    font-size: x-large
+}
+
 .logout-button {
     position: fixed;
     bottom: 0;
