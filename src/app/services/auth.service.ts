@@ -19,16 +19,6 @@ export class AuthService {
   register(user) {
     return new Promise < firebase.auth.UserCredential > (() => {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-          .then(
-            result => {
-              this.afs.collection(`users`).add(user);
-              result.user.updateProfile(
-                {
-                  displayName: user.fullName
-                }
-              )
-            }
-          )
       })
       .catch(error => {
         console.error(error);
