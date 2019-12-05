@@ -11,15 +11,37 @@
     <form>
       <br>
       <div class="top">
-        <div class="profile-picture big-profile-picture">
-          <img id="img" />
-        </div>
+        <ion-avatar class="profile-picture big-profile-picture">
+          <ion-img (click)="selectImage()" src="assets/icon/profile-avatar.png"></ion-img>
+        </ion-avatar>
       </div>
     </form>
   </div>
 
   <div class="profile-name">
-    <p>{{ currentUser.displayName }}</p>
+    <p>
+      {{ currentUser.displayName }}
+      <ion-icon name="create"></ion-icon>
+    </p>
+  </div>
+
+  <div class="profile-details">
+    <ion-row *ngFor="let work of works">
+      <ion-icon name="briefcase"></ion-icon>
+      {{ work }}
+    </ion-row>
+
+    <ion-row *ngFor="let school of schools">
+      <ion-icon name="school"></ion-icon>
+      {{ school }}
+    </ion-row>
+
+    <ion-row>
+      <ion-icon name="thumbs-up"></ion-icon>
+      <span *ngFor="let interest of interests">
+        {{ interest }};
+      </span>
+    </ion-row>
   </div>
 
   <ion-button class="logout-button" color="danger" expand="full" (click)="logout()">

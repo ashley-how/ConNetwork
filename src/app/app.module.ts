@@ -21,12 +21,18 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CreateEventPageModule } from '../app/modal/create-event/create-event.module';
 import { EventInfoPageModule } from '../app/modal/event-info/event-info.module';
 
+import { File } from '@ionic-native/file/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -36,11 +42,16 @@ import { EventInfoPageModule } from '../app/modal/event-info/event-info.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    File,
+    Camera,
+    FilePath,
+    WebView,
     HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue: {} }
