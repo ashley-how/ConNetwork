@@ -2,10 +2,6 @@ ion-row {
     padding: 5px 10px;
 }
 
-span {
-    padding: 0 10px 0 0;
-}
-
 .profile-picture {
     border: 3px solid rgba(0, 0, 0, 0.25);
     padding: 3px;
@@ -31,15 +27,4 @@ span {
 .profile-name {
     text-align: center;
     font-size: x-large
-}
-
-.section {
-    border-top: solid 1px;
-    border-color: black;
-}
-
-.logout-button {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }

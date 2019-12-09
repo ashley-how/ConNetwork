@@ -1,15 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="secondary" style="font-family: monospace; text-align: center">
-      CREATE EVENT
-    </ion-title>
-
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <ion-button size="small" shape="round" color="medium" (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
 
+    <ion-title color="secondary" style="font-family: monospace; text-align: center">
+      CREATE EVENT
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" type="submit" [disabled]="!createEventForm.valid">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -68,9 +73,5 @@
         </ion-col>
       </ion-row>
     </div>
-
-    <ion-button class="create-button" expand="full" type="submit" [disabled]="!createEventForm.valid">
-      Create
-    </ion-button>
   </form>
 </ion-content>

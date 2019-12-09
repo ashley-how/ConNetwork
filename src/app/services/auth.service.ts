@@ -19,6 +19,19 @@ export class AuthService {
   register(user) {
     return new Promise < firebase.auth.UserCredential > (() => {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+        .then(createdUser => {
+          createdUser.user.updateProfile({
+            displayName: user.fullName
+          });
+
+          const userInfo = {
+            userId: createdUser.user.uid,
+            works: [],
+            schools: [],
+            interests: []
+          };
+          this.afs.collection(`users`).add(userInfo);
+        })
       })
       .catch(error => {
         console.error(error);

@@ -1,50 +1,84 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="secondary" style="font-family: monospace; text-align: center">
+    <ion-title color="secondary" style="font-family: monospace;">
       MY PROFILE
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="logout()">
+        <ion-icon name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <br>
   <div class="list">
-    <form>
-      <br>
-      <div class="top">
-        <ion-avatar class="profile-picture big-profile-picture">
-          <ion-img (click)="selectImage()" src="assets/icon/profile-avatar.png"></ion-img>
-        </ion-avatar>
-      </div>
-    </form>
+    <div class="top">
+      <ion-avatar class="profile-picture big-profile-picture">
+        <ion-img src="assets/icon/profile-avatar.png"></ion-img>
+      </ion-avatar>
+    </div>
   </div>
 
-  <div class="profile-name">
-    <p>
+  <ion-toolbar>
+    <div class="profile-name">
       {{ currentUser.displayName }}
-      <ion-icon name="create"></ion-icon>
-    </p>
-  </div>
+    </div>
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="openEditProfileModal()">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 
   <div class="profile-details">
-    <ion-row *ngFor="let work of works">
-      <ion-icon name="briefcase"></ion-icon>
-      {{ work }}
-    </ion-row>
+    <div class="section">
+      <ion-toolbar>
+        <ion-row><ion-label style="font-size:x-large">Work</ion-label></ion-row>
+        <ion-buttons slot="end">
+          <ion-button size="small" shape="round" color="medium" (click)="openEditWorkModal()">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-row *ngFor="let work of works">
+        <ion-icon name="briefcase"></ion-icon>
+        {{ work }}
+      </ion-row>
+    </div>
 
-    <ion-row *ngFor="let school of schools">
-      <ion-icon name="school"></ion-icon>
-      {{ school }}
-    </ion-row>
+    <div class="section">
+      <ion-toolbar>
+        <ion-row><ion-label style="font-size:x-large">School</ion-label></ion-row>
+        <ion-buttons slot="end">
+          <ion-button size="small" shape="round" color="medium" (click)="openEditSchoolModal()">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-row *ngFor="let school of schools">
+        <ion-icon name="school"></ion-icon>
+        {{ school }}
+      </ion-row>
+    </div>
 
-    <ion-row>
-      <ion-icon name="thumbs-up"></ion-icon>
-      <span *ngFor="let interest of interests">
-        {{ interest }};
-      </span>
-    </ion-row>
+    <div class="section">
+      <ion-toolbar>
+        <ion-row><ion-label style="font-size:x-large">Interests</ion-label></ion-row>
+        <ion-buttons slot="end">
+          <ion-button size="small" shape="round" color="medium" (click)="openEditInterestModal()">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-row>
+        <span *ngFor="let interest of interests">
+          <ion-icon name="thumbs-up"></ion-icon>
+          {{ interest }}
+        </span>
+      </ion-row>
+    </div>
   </div>
-
-  <ion-button class="logout-button" color="danger" expand="full" (click)="logout()">
-    Logout
-  </ion-button>
 </ion-content>

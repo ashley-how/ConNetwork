@@ -22,8 +22,9 @@ export class CreateEventPage implements OnInit {
   minEndDate: string = (new Date(Date.now() - this.timezoneOffset)).toISOString();
   maxEndDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();
 
-  constructor(private fb: FormBuilder, 
-    private modalController: ModalController,
+  constructor(
+    private fb: FormBuilder, 
+    private modalCtrl: ModalController,
     private eventService: EventsService, 
     private loadingCtrl: LoadingController
     ) {
@@ -35,8 +36,7 @@ export class CreateEventPage implements OnInit {
       startTime: ['', Validators.required],
       endDate: ['', Validators.required],
       endTime: ['', Validators.required]
-    }
-    );
+    });
    }
 
   ngOnInit() {
@@ -61,6 +61,6 @@ export class CreateEventPage implements OnInit {
   }
 
   closeModal() {
-    this.modalController.dismiss();
+    this.modalCtrl.dismiss();
   }
 }
