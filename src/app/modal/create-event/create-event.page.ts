@@ -12,7 +12,7 @@ import * as moment from 'moment';
 export class CreateEventPage implements OnInit {
   createEventForm : FormGroup;
 
-  timezoneOffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+  timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
 
   minStartDate: string = (new Date(Date.now() - this.timezoneOffset)).toISOString();
   maxStartDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();

@@ -11,7 +11,7 @@
     </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button size="small" shape="round" color="medium" type="submit" [disabled]="!createEventForm.valid">
+      <ion-button size="small" shape="round" color="medium" type="submit" [disabled]="!createEventForm.valid" (click)="createEvent()">
         <ion-icon name="checkmark"></ion-icon>
       </ion-button>
     </ion-buttons>

@@ -6,6 +6,9 @@ import { EditProfilePage } from 'src/app/modal/edit-profile/edit-profile.page';
 import { EditWorkPage } from 'src/app/modal/edit-work/edit-work.page';
 import { EditSchoolPage } from 'src/app/modal/edit-school/edit-school.page';
 import { EditInterestPage } from 'src/app/modal/edit-interest/edit-interest.page';
+import { AddWorkPage } from 'src/app/modal/add-work/add-work.page';
+import { AddSchoolPage } from 'src/app/modal/add-school/add-school.page';
+import { AddInterestPage } from 'src/app/modal/add-interest/add-interest.page';
 
 @Component({
   selector: 'app-profile',
@@ -15,9 +18,9 @@ import { EditInterestPage } from 'src/app/modal/edit-interest/edit-interest.page
 export class ProfilePage {
   currentUser;
   currentUserInfo;
-  works = ["DNV GL", "AXA", "Capri by Fraser"];
-  schools = ["NTU", "Meridian JC", "Changkat Changi Secondary School"];
-  interests = ["Blockchain", "Web development", "C#", "Angular", "Soccer"];
+  works = [];
+  schools = [];
+  interests = [];
 
   constructor(
     private authService: AuthService,
@@ -30,11 +33,33 @@ export class ProfilePage {
   ngOnInit() {
     this.currentUser = this.userService.getCurrentUser();
     console.log("Current user: ", this.currentUser);
-
     this.currentUserInfo = this.userService.getCurrentUserInfo();
-    // this.works = this.currentUserInfo.works;
-    // this.schools = this.currentUserInfo.schools;
-    // this.interests = this.currentUserInfo.interests;
+    console.log("Current user info: ", this.currentUserInfo);
+
+    this.userService.getUserInfo("work").subscribe(works => {
+      this.works = works;
+    });
+  }
+
+  async openAddWorkModal() {
+    const addWorkModal = await this.modalCtrl.create({
+      component: AddWorkPage
+    });
+    addWorkModal.present();
+  }
+
+  async openAddSchoolModal() {
+    const addSchoolModal = await this.modalCtrl.create({
+      component: AddSchoolPage
+    });
+    addSchoolModal.present();
+  }
+
+  async openAddInterestModal() {
+    const addInterestModal = await this.modalCtrl.create({
+      component: AddInterestPage
+    });
+    addInterestModal.present();
   }
 
   async openEditProfileModal() {

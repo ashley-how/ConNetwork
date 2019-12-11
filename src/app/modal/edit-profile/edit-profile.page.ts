@@ -40,7 +40,8 @@ export class EditProfilePage implements OnInit {
 
       this.editProfileForm = this.fb.group({
         profilePicture: [this.currentUser.photoURL],
-        displayName: [this.currentUser.displayName, Validators.required]
+        displayName: [this.currentUser.displayName, Validators.required],
+        email: [this.currentUser.email, Validators.required]
       });
     }
 
@@ -55,7 +56,8 @@ export class EditProfilePage implements OnInit {
   }
 
   saveChanges() {
-
+    var updatedProfile = this.userService.updateUserProfile(this.editProfileForm.value);
+    console.log(updatedProfile);
     this.modalCtrl.dismiss();
   }
 

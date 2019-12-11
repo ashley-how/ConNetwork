@@ -24,13 +24,7 @@ export class AuthService {
             displayName: user.fullName
           });
 
-          const userInfo = {
-            userId: createdUser.user.uid,
-            works: [],
-            schools: [],
-            interests: []
-          };
-          this.afs.collection(`users`).add(userInfo);
+          this.afs.doc(`users/${createdUser.user.uid}`).set({userId: createdUser.user.uid});
         })
       })
       .catch(error => {

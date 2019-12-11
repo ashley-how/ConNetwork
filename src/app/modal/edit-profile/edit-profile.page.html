@@ -6,10 +6,13 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-title>EDIT PROFILE</ion-title>
+    <ion-title color="secondary" style="font-family: monospace;">
+      EDIT PROFILE
+    </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button size="small" shape="round" color="medium" type="submit" [disabled]="!editProfileForm.valid">
+      <ion-button size="small" shape="round" color="medium" type="submit" [disabled]="!editProfileForm.valid"
+        (click)="saveChanges()">
         <ion-icon name="checkmark"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -28,10 +31,19 @@
     </div>
 
     <ion-toolbar>
-      <ion-row><ion-label style="font-size:x-large">Display Name</ion-label></ion-row>
+      <ion-row>
+        <ion-label style="font-size:x-large">Display Name</ion-label>
+      </ion-row>
       <ion-item>
         <ion-input type="text" formControlName="displayName" placeholder="Display Name"></ion-input>
       </ion-item>
+
+      <ion-row>
+          <ion-label style="font-size:x-large">Email</ion-label>
+        </ion-row>
+        <ion-item>
+          <ion-input type="text" formControlName="email" placeholder="Email" [disabled]="true"></ion-input>
+        </ion-item>
     </ion-toolbar>
   </form>
 </ion-content>

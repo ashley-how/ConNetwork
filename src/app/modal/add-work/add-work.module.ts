@@ -5,12 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EditWorkPage } from './edit-work.page';
+import { AddWorkPage } from './add-work.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: EditWorkPage
+    component: AddWorkPage
   }
 ];
 
@@ -22,6 +22,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [EditWorkPage]
+  declarations: [AddWorkPage]
 })
-export class EditWorkPageModule {}
+export class AddWorkPageModule {}

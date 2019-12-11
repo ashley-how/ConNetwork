@@ -20,6 +20,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { CreateEventPageModule } from '../app/modal/create-event/create-event.module';
 import { EventInfoPageModule } from '../app/modal/event-info/event-info.module';
+
+import { AddWorkPageModule } from '../app/modal/add-work/add-work.module';
+import { AddSchoolPageModule } from '../app/modal/add-school/add-school.module';
+import { AddInterestPageModule } from '../app/modal/add-interest/add-interest.module';
+
 import { EditProfilePageModule } from '../app/modal/edit-profile/edit-profile.module';
 import { EditWorkPageModule } from '../app/modal/edit-work/edit-work.module';
 import { EditSchoolPageModule } from '../app/modal/edit-school/edit-school.module';
@@ -43,6 +48,9 @@ import { IonicStorageModule } from '@ionic/storage';
     BrowserAnimationsModule,
     CreateEventPageModule,
     EventInfoPageModule,
+    AddWorkPageModule,
+    AddSchoolPageModule,
+    AddInterestPageModule,
     EditProfilePageModule,
     EditWorkPageModule,
     EditSchoolPageModule,

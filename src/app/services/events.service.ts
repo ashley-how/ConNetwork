@@ -32,8 +32,8 @@ export class EventsService {
     );
   }
 
-  getEvent(id: string): Observable < Event > {
-    return this.eventCollection.doc < Event > (id).valueChanges().pipe(
+  getEvent(id: string): Observable<Event> {
+    return this.eventCollection.doc<Event>(id).valueChanges().pipe(
       take(1),
       map(event => {
         event.id = id;
