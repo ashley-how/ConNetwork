@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-event-info',
-  templateUrl: './event-info.page.html',
-  styleUrls: ['./event-info.page.scss'],
+  selector: 'app-edit-school',
+  templateUrl: './edit-school.page.html',
+  styleUrls: ['./edit-school.page.scss'],
 })
-export class EventInfoPage implements OnInit {
+export class EditSchoolPage implements OnInit {
 
   constructor(private modalCtrl: ModalController) { }
 

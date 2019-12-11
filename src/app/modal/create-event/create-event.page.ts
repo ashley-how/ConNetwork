@@ -12,16 +12,22 @@ import * as moment from 'moment';
 export class CreateEventPage implements OnInit {
   createEventForm : FormGroup;
 
-  timezoneOffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+  timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
 
   minStartDate: string = (new Date(Date.now() - this.timezoneOffset)).toISOString();
   maxStartDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();
 
+  minStartTime: string = (new Date(Date.now() - this.timezoneOffset)).toISOString();
+
   minEndDate: string = (new Date(Date.now() - this.timezoneOffset)).toISOString();
   maxEndDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 2)) - this.timezoneOffset)).toISOString();
 
-  constructor(private fb: FormBuilder, private modalController: ModalController,
-    private eventService: EventsService, private loadingCtrl: LoadingController) {
+  constructor(
+    private fb: FormBuilder, 
+    private modalCtrl: ModalController,
+    private eventService: EventsService, 
+    private loadingCtrl: LoadingController
+    ) {
     this.createEventForm = this.fb.group({
       eventName: ['', Validators.required],
       details: [''],
@@ -43,8 +49,9 @@ export class CreateEventPage implements OnInit {
     await loader.present();
 
     this.createEventForm.get("startDate").patchValue(moment(new Date(this.createEventForm.get("startDate").value)).format("DD MMM YYYY"));
-    this.createEventForm.get("endDate").patchValue(moment(new Date(this.createEventForm.get("endDate").value)).format("DD MMM YYYY"));
     this.createEventForm.get("startTime").patchValue(moment(new Date(this.createEventForm.get("startTime").value)).format("HH:MM"));
+
+    this.createEventForm.get("endDate").patchValue(moment(new Date(this.createEventForm.get("endDate").value)).format("DD MMM YYYY"));
     this.createEventForm.get("endTime").patchValue(moment(new Date(this.createEventForm.get("endTime").value)).format("HH:MM"));
     console.log(this.createEventForm.value)
    
@@ -54,6 +61,6 @@ export class CreateEventPage implements OnInit {
   }
 
   closeModal() {
-    this.modalController.dismiss();
+    this.modalCtrl.dismiss();
   }
 }

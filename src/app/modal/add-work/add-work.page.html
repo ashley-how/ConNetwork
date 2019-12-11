@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button size="small" shape="round" color="medium" (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title color="secondary" style="font-family: monospace;">
+      ADD WORK
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" [disabled]="!addWorkForm.valid" (click)="saveChanges()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addWorkForm" (ngSubmit)="saveChanges()">
+    <ion-toolbar>
+      <ion-item>
+        <ion-input type="text" formControlName="companyName" placeholder="Company Name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" formControlName="jobTitle" placeholder="Job Title (Optional)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" formControlName="location" placeholder="Location (Optional)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea type="text" formControlName="description" placeholder="Describe your work (Optional)"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Current Work?</ion-label>
+        <ion-toggle formControlName="isCurrentWork"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="calendar"></ion-icon>
+        <ion-datetime displayFormat="DD MMM YYYY" formControlName="startDate" [max]="maxStartDate"
+          placeholder="Start Date"></ion-datetime>
+      </ion-item>
+
+      <ion-item *ngIf="!isCurrentWork">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-datetime displayFormat="DD MMM YYYY" formControlName="endDate" [max]="maxStartDate"
+          placeholder="End Date"></ion-datetime>
+      </ion-item>
+    </ion-toolbar>
+  </form>
+</ion-content>

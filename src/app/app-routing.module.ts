@@ -11,7 +11,14 @@ const routes: Routes = [
   { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule', canActivate: [AuthGuard] },
   { path: 'messaging', loadChildren: './pages/messaging/messaging.module#MessagingPageModule', canActivate: [AuthGuard] },
   { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule', canActivate: [AuthGuard] },
-  { path: 'event-info', loadChildren: './modal/event-info/event-info.module#EventInfoPageModule' }
+  { path: 'event-info', loadChildren: './modal/event-info/event-info.module#EventInfoPageModule' },
+  { path: 'edit-profile', loadChildren: './modal/edit-profile/edit-profile.module#EditProfilePageModule' },
+  { path: 'edit-work', loadChildren: './modal/edit-work/edit-work.module#EditWorkPageModule' },
+  { path: 'edit-school', loadChildren: './modal/edit-school/edit-school.module#EditSchoolPageModule' },
+  { path: 'edit-interest', loadChildren: './modal/edit-interest/edit-interest.module#EditInterestPageModule' },
+  { path: 'add-work', loadChildren: './modal/add-work/add-work.module#AddWorkPageModule' },
+  { path: 'add-school', loadChildren: './modal/add-school/add-school.module#AddSchoolPageModule' },
+  { path: 'add-interest', loadChildren: './modal/add-interest/add-interest.module#AddInterestPageModule' }
 ];
 @NgModule({
   imports: [

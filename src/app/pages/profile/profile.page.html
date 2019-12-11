@@ -1,28 +1,118 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="secondary" style="font-family: monospace; text-align: center">
+    <ion-title color="secondary" style="font-family: monospace;">
       MY PROFILE
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="logout()">
+        <ion-icon name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <br>
   <div class="list">
-    <form>
-      <br>
-      <div class="top">
-        <div class="profile-picture big-profile-picture">
-          <img id="img" />
-        </div>
-      </div>
-    </form>
+    <div class="top">
+      <ion-avatar class="profile-picture big-profile-picture">
+        <ion-img src="assets/icon/profile-avatar.png"></ion-img>
+      </ion-avatar>
+    </div>
   </div>
 
-  <div class="profile-name">
-    <p>{{ currentUser.displayName }}</p>
-  </div>
+  <ion-toolbar>
+    <div class="profile-name">
+      {{ currentUser.displayName }}
+    </div>
+    <div class="profile-email">
+      {{ currentUser.email }}
+    </div>
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="openEditProfileModal()">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 
-  <ion-button class="logout-button" color="danger" expand="full" (click)="logout()">
-    Logout
-  </ion-button>
+  <div class="profile-details">
+    <div class="section">
+      <ion-toolbar>
+        <ion-row>
+          <ion-label style="font-size:x-large">Work</ion-label>
+        </ion-row>
+
+        <ion-buttons slot="end">
+          <ion-button size="small" shape="round" color="medium" (click)="openEditWorkModal()">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <ion-row *ngFor="let work of works">
+        <ion-icon name="briefcase"></ion-icon>
+        <span *ngIf="work.jobTitle != ''">{{ work.jobTitle }} @</span>
+        <b>{{ work.companyName }}</b>
+      </ion-row>
+
+      <ion-row>
+        <ion-button expand="full" type="button" style="width: 100%;" (click)="openAddWorkModal()">
+          Add Work
+        </ion-button>
+      </ion-row>
+    </div>
+
+    <div class="section">
+      <ion-toolbar>
+        <ion-row>
+          <ion-label style="font-size:x-large">School</ion-label>
+        </ion-row>
+
+        <ion-buttons slot="end">
+          <ion-button size="small" shape="round" color="medium" (click)="openEditSchoolModal()">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <ion-row *ngFor="let school of schools">
+        <ion-icon name="school"></ion-icon>
+        {{ school }}
+      </ion-row>
+
+      <ion-row>
+        <ion-button expand="full" type="button" style="width: 100%;" (click)="openAddSchoolModal()">
+          Add School
+        </ion-button>
+      </ion-row>
+    </div>
+
+    <div class="section">
+      <ion-toolbar>
+        <ion-row>
+          <ion-label style="font-size:x-large">Interests</ion-label>
+        </ion-row>
+
+        <ion-buttons slot="end">
+          <ion-button size="small" shape="round" color="medium" (click)="openEditInterestModal()">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <ion-row>
+        <span class="interest" *ngFor="let interest of interests">
+          <ion-icon name="thumbs-up"></ion-icon>
+          {{ interest }}
+        </span>
+      </ion-row>
+
+      <ion-row>
+        <ion-button expand="full" type="button" style="width: 100%;" (click)="openAddInterestModal()">
+          Add Interest
+        </ion-button>
+      </ion-row>
+    </div>
+  </div>
 </ion-content>

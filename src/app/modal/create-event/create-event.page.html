@@ -1,15 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="secondary" style="font-family: monospace; text-align: center">
-      CREATE EVENT
-    </ion-title>
-
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <ion-button size="small" shape="round" color="medium" (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
 
+    <ion-title color="secondary" style="font-family: monospace; text-align: center">
+      CREATE EVENT
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" type="submit" [disabled]="!createEventForm.valid" (click)="createEvent()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -30,41 +35,43 @@
         <ion-textarea formControlName="details" placeholder="Details"></ion-textarea>
       </ion-item>
 
-      <ion-item>
-        <ion-icon name="calendar"></ion-icon>
-        <ion-label>Start Date</ion-label>
-        <ion-datetime displayFormat="DD MMM YYYY" formControlName="startDate" [min]="minStartDate" [max]="maxStartDate"
-          placeholder="Start Date"></ion-datetime>
-      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-icon name="calendar"></ion-icon>
+            <ion-datetime displayFormat="DD MMM YYYY" formControlName="startDate" [min]="minStartDate"
+              [max]="maxStartDate" placeholder="Start Date"></ion-datetime>
+          </ion-item>
+        </ion-col>
 
+        <ion-col>
+          <ion-item>
+            <ion-icon name="time"></ion-icon>
+            <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="startTime"
+              placeholder="Start Time"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-icon name="calendar"></ion-icon>
+            <ion-datetime displayFormat="DD MMM YYYY" formControlName="endDate" [min]="minEndDate" [max]="maxEndDate"
+              placeholder="End Date">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
 
-      <ion-item>
-        <ion-icon name="time"></ion-icon>
-        <ion-label>Start Time</ion-label>
-        <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="startTime"
-          placeholder="Start Time"></ion-datetime>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-icon name="calendar"></ion-icon>
-        <ion-label>End Date</ion-label>
-        <ion-datetime displayFormat="DD MMM YYYY" formControlName="endDate" [min]="minEndDate" [max]="maxEndDate"
-          placeholder="End Date">
-        </ion-datetime>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon name="time"></ion-icon>
-        <ion-label>End Time</ion-label>
-        <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="endTime" placeholder="End Time">
-        </ion-datetime>
-      </ion-item>
+        <ion-col>
+          <ion-item>
+            <ion-icon name="time"></ion-icon>
+            <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="endTime"
+              placeholder="End Time">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
     </div>
-
-    <ion-button class="create-button" expand="full" type="submit" [disabled]="!createEventForm.valid">
-      Create
-    </ion-button>
   </form>
 </ion-content>

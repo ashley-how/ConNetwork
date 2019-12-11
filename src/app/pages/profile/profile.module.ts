@@ -10,8 +10,8 @@ import { ProfilePage } from './profile.page';
     IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: ProfilePage }])
+    RouterModule.forChild([{ path: '', component: ProfilePage }]),
   ],
-  declarations: [ProfilePage]
+  declarations: [ProfilePage],
 })
 export class ProfilePageModule {}
