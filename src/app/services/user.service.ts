@@ -3,7 +3,6 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -47,7 +46,7 @@ export class UserService {
       );
   }
 
-  updateUserInfo(sectionInfo, section) {
+  addUserInfo(sectionInfo, section) {
     var currentUser = this.getCurrentUser();
     this.userCollection.doc(currentUser.uid).collection(section).add(sectionInfo);
   }

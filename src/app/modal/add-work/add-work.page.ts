@@ -44,7 +44,7 @@ export class AddWorkPage implements OnInit {
   }
 
   async saveChanges() {
-    this.userService.updateUserInfo(this.addWorkForm.value, "work");
+    this.userService.addUserInfo(this.addWorkForm.value, "work");
     const loader = await this.loadingCtrl.create({
       duration: 2000
     });

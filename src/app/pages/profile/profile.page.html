@@ -52,8 +52,10 @@
 
       <ion-row *ngFor="let work of works">
         <ion-icon name="briefcase"></ion-icon>
-        <span *ngIf="work.jobTitle != ''">{{ work.jobTitle }} @</span>
-        <b>{{ work.companyName }}</b>
+        <span>
+          <ion-text *ngIf="work.jobTitle != ''">{{ work.jobTitle }} @ </ion-text>
+          <strong>{{ work.companyName }}</strong>
+        </span>
       </ion-row>
 
       <ion-row>
@@ -93,12 +95,6 @@
         <ion-row>
           <ion-label style="font-size:x-large">Interests</ion-label>
         </ion-row>
-
-        <ion-buttons slot="end">
-          <ion-button size="small" shape="round" color="medium" (click)="openEditInterestModal()">
-            <ion-icon name="create"></ion-icon>
-          </ion-button>
-        </ion-buttons>
       </ion-toolbar>
 
       <ion-row>

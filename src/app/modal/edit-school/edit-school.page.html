@@ -1,12 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <ion-button size="small" shape="round" color="medium" (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
 
-    <ion-title>Edit School</ion-title>
+    <ion-title color="secondary" style="font-family: monospace;">
+      EDIT SCHOOL
+    </ion-title>
 
     <ion-buttons slot="end">
       <ion-button size="small" shape="round" color="medium">
@@ -17,5 +19,14 @@
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="editSchoolForm" (ngSubmit)="saveChanges()">
+    <ion-toolbar>
+      <ion-row>
+        <ion-label style="font-size:x-large">School</ion-label>
+      </ion-row>
+      <ion-item>
+        
+      </ion-item>
+    </ion-toolbar>
+  </form>
 </ion-content>
