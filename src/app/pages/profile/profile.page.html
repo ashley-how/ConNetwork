@@ -23,12 +23,18 @@
   </div>
 
   <ion-toolbar>
-    <div class="profile-name">
-      {{ currentUser.displayName }}
-    </div>
-    <div class="profile-email">
-      {{ currentUser.email }}
-    </div>
+    <ion-row>
+      <div class="profile-name">
+        {{ currentUser.displayName }}
+      </div>
+    </ion-row>
+
+    <ion-row>
+      <div class="profile-email">
+        {{ currentUser.email }}
+      </div>
+    </ion-row>
+    
     <ion-buttons slot="end">
       <ion-button size="small" shape="round" color="medium" (click)="openEditProfileModal()">
         <ion-icon name="create"></ion-icon>

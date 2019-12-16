@@ -13,7 +13,7 @@ ion-row {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    margin: 0% auto;
+    margin: 0% 5%;
     width: 80px;
     height: 80px;
     overflow: hidden;
@@ -29,12 +29,7 @@ ion-row {
 }
 
 .profile-name {
-    text-align: center;
     font-size: x-large
-}
-
-.profile-email {
-    text-align: center;
 }
 
 .section {
