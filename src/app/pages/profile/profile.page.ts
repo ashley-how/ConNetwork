@@ -9,6 +9,7 @@ import { EditInterestPage } from 'src/app/modal/edit-interest/edit-interest.page
 import { AddWorkPage } from 'src/app/modal/add-work/add-work.page';
 import { AddSchoolPage } from 'src/app/modal/add-school/add-school.page';
 import { AddInterestPage } from 'src/app/modal/add-interest/add-interest.page';
+import { Work } from 'src/app/model/work';
 
 @Component({
   selector: 'app-profile',
@@ -30,14 +31,28 @@ export class ProfilePage {
     private modalCtrl: ModalController
     ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.currentUser = this.userService.getCurrentUser();
     console.log("Current user: ", this.currentUser);
-    this.currentUserInfo = this.userService.getCurrentUserInfo();
-    console.log("Current user info: ", this.currentUserInfo);
+
+    const loader = await this.loadingCtrl.create();
+    await loader.present();
 
     this.userService.getUserInfo("work").subscribe(works => {
+      console.log("Works retrieved: ", works);
       this.works = works;
+
+      this.userService.getUserInfo("school").subscribe(schools => {
+        console.log("Schools retrieved: ", schools);
+        this.schools = schools;
+
+        this.userService.getUserInfo("interest").subscribe(interests => {
+          console.log("Interests retrieved: ", interests);
+          this.interests = interests;
+
+          loader.dismiss();
+        });
+      });
     });
   }
 

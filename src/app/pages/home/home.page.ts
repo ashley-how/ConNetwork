@@ -21,7 +21,9 @@ export class HomePage {
     private authService: AuthService, private loadingCtrl: LoadingController,
     private toastCtrl: ToastController, private userService: UserService) { }
 
-    ngOnInit() {
+    async ngOnInit() {
+      const loader = await this.loadingCtrl.create();
+      await loader.present();
       this.eventsService.getEventsByUser().subscribe(myEvents => {
         console.log("My registered events: ", myEvents);
         this.myEvents = myEvents;
@@ -30,6 +32,7 @@ export class HomePage {
           console.log("All events: ", events);
           this.events = events;
         });
+        loader.dismiss();
       });
     }
 

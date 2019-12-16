@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add-interest</ion-title>
+    <ion-buttons slot="start">
+      <ion-button size="small" shape="round" color="medium" (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title color="secondary" style="font-family: monospace;">
+      ADD INTEREST
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" [disabled]="!addInterestForm.valid" (click)="saveChanges()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="addInterestForm" (ngSubmit)="saveChanges()">
+    <ion-toolbar>
+      <ion-item>
+        <ion-input type="text" formControlName="interest" placeholder="Interest"></ion-input>
+      </ion-item>
+    </ion-toolbar>
+  </form>
 </ion-content>

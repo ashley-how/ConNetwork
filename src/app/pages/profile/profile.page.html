@@ -78,7 +78,7 @@
 
       <ion-row *ngFor="let school of schools">
         <ion-icon name="school"></ion-icon>
-        {{ school }}
+        {{ school.schoolName }}
       </ion-row>
 
       <ion-row>
@@ -104,7 +104,7 @@
       <ion-row>
         <span class="interest" *ngFor="let interest of interests">
           <ion-icon name="thumbs-up"></ion-icon>
-          {{ interest }}
+          {{ interest.interest }}
         </span>
       </ion-row>
 
