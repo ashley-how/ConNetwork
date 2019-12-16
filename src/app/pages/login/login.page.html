@@ -9,12 +9,11 @@
       </div>
       <h1 no-margin>
         <ion-text class="fw700" color="secondary" style="font-family: monospace">
-          CONNETWORK
+          ConNetwork
         </ion-text>
       </h1>
     </div>
 
-    <!-- Login form -->
     <form [formGroup]="onLoginForm" class="list-form">
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">
@@ -57,7 +56,7 @@
         Sign in
       </ion-button>
 
-      <p text-center>
+      <!-- <p text-center>
         <ion-text>
           Or sign in with:
         </ion-text>
@@ -65,23 +64,16 @@
 
       <ion-grid class="btn-group">
         <ion-row>
-          <ion-col size="6">
+          <ion-col size="12">
             <ion-button shape="round" expand="full" color="secondary">
               <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
             </ion-button>
           </ion-col>
-
-          <ion-col size="6">
-              <ion-button shape="round" expand="full" color="secondary" (click)="linkedinLogin()">
-                <ion-icon slot="icon-only" name="logo-linkedin"></ion-icon>
-              </ion-button>
-            </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
 
     </div>
 
-    <!-- Other links -->
     <div text-center margin-top>
       <span (click)="goToRegister()" class="paz" tappable>
         <ion-text>

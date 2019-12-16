@@ -53,7 +53,7 @@ export class AddWorkPage implements OnInit {
     loader.onWillDismiss().then(async l => {
       const toast = await this.toastCtrl.create({
         showCloseButton: true,
-        message: 'Work is added successfully.',
+        message: 'New work is added successfully.',
         duration: 3000,
         position: 'bottom'
       });

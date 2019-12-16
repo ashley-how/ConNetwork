@@ -1,9 +1,45 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add-school</ion-title>
+    <ion-buttons slot="start">
+      <ion-button size="small" shape="round" color="medium" (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title color="secondary" style="font-family: monospace;">
+      ADD SCHOOL
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" [disabled]="!addSchoolForm.valid" (click)="saveChanges()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="addSchoolForm" (ngSubmit)="saveChanges()">
+    <ion-toolbar>
+      <ion-item>
+        <ion-input type="text" formControlName="schoolName" placeholder="School Name"></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-input type="text" formControlName="location" placeholder="Location (Optional)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="calendar"></ion-icon>
+        <ion-datetime displayFormat="DD MMM YYYY" formControlName="startDate"
+          placeholder="Start Date"></ion-datetime>
+      </ion-item>
+
+      <ion-item *ngIf="!isCurrentWork">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-datetime displayFormat="DD MMM YYYY" formControlName="endDate" [max]="maxEndDate"
+          placeholder="End Date"></ion-datetime>
+      </ion-item>
+    </ion-toolbar>
+  </form>
 </ion-content>
