@@ -36,7 +36,7 @@ export class AddSchoolPage implements OnInit {
   }
 
   async saveChanges() {
-    this.userService.updateUserInfo(this.addSchoolForm.value, "school");
+    this.userService.addUserInfo(this.addSchoolForm.value, "school");
     const loader = await this.loadingCtrl.create({
       duration: 2000
     });

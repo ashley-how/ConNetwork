@@ -33,7 +33,7 @@ export class AddInterestPage implements OnInit {
   }
 
   async saveChanges() {
-    this.userService.updateUserInfo(this.addInterestForm.value, "interest");
+    this.userService.addUserInfo(this.addInterestForm.value, "interest");
     const loader = await this.loadingCtrl.create({
       duration: 2000
     });
