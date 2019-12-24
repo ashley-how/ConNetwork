@@ -51,8 +51,9 @@
             </ion-button>
 
             <ng-template #elseBlock>
-              <ion-button expand="full" color="light" type="button" disabled>
-                Registered
+              <ion-button expand="full" color="danger" type="button" 
+                (click)="unregisterForEvent(event)">
+                Unregister
               </ion-button>
             </ng-template>
           </ion-col>

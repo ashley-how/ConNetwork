@@ -52,8 +52,6 @@ export class LoginPage implements OnInit {
       'password': onLoginForm.value.password
     }
 
-    console.log("User credentials: ", user);
-
     this.authService.login(user)
     .then(result => {
       if (result) {
