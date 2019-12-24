@@ -1,36 +1,47 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-title color="secondary" style="font-family: monospace;">
-        MY EVENTS
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <ion-toolbar color="secondary">
-      <ion-title>Events Registered</ion-title>
-    </ion-toolbar>
-  
-    <ion-card *ngFor="let event of myEvents" (click)="openEventInfoModal()">
-      <ion-card-header>
-        <ion-card-title>{{ event.eventName }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div class="row">
+  <ion-toolbar>
+    <ion-title color="secondary" style="font-family: monospace;">
+      MY EVENTS
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar color="secondary">
+    <ion-title>Events Registered</ion-title>
+  </ion-toolbar>
+
+  <ion-card *ngFor="let event of myEvents" (click)="openEventInfoModal(event)">
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-card-title>{{ event.eventName }}</ion-card-title>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
           <ion-icon name="pin"></ion-icon> {{ event.location }}
-        </div>
-  
-        <div class="row">
+        </ion-row>
+
+        <ion-row>
           <ion-icon name="calendar"></ion-icon> {{ event.startDate }} - {{ event.endDate }}, {{ event.startTime }} hrs
-        </div>
-  
-        <div class="row">
+        </ion-row>
+
+        <ion-row>
           <ion-icon name="document"></ion-icon> {{ event.details }}
-        </div>
-      </ion-card-content>
-    </ion-card>
-  
-    <ion-toolbar color="secondary">
-      <ion-title>Expired Events</ion-title>
-    </ion-toolbar>
-  </ion-content>
+        </ion-row>
+
+        <ion-row>
+          <ion-icon name="people"></ion-icon> {{ event.participants.length }}
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-toolbar color="secondary">
+    <ion-title>Expired Events</ion-title>
+  </ion-toolbar>
+</ion-content>

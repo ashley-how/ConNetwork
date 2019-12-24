@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventsService } from 'src/app/services/events.service';
-import { Observable } from 'rxjs';
+import { EventService } from 'src/app/services/event.service';
 import { Event } from '../../model/Event';
 import { ModalController } from '@ionic/angular';
 import { EventInfoPage } from 'src/app/modal/event-info/event-info.page';
@@ -13,7 +12,7 @@ import { EventInfoPage } from 'src/app/modal/event-info/event-info.page';
 export class EventsPage implements OnInit {
   myEvents: Event[] = [];
 
-  constructor(private eventsService: EventsService, private modalCtrl: ModalController) { }
+  constructor(private eventsService: EventService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.eventsService.getEventsByUser().subscribe(events => {
@@ -22,9 +21,13 @@ export class EventsPage implements OnInit {
     });   
   }
 
-  async openEventInfoModal() {
+  async openEventInfoModal(selectedEvent) {
+    console.log("Selected event: ", selectedEvent);
     const createEventModal = await this.modalCtrl.create({
-      component: EventInfoPage
+      component: EventInfoPage,
+      componentProps: {
+        eventInfo: selectedEvent
+      }
     });
     createEventModal.present();
   }

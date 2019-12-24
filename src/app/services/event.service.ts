@@ -9,7 +9,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 
-export class EventsService {
+export class EventService {
   private events: Observable < Event[] > ;
   private eventCollection: AngularFirestoreCollection < Event > ;
 

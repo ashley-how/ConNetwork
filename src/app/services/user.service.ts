@@ -19,6 +19,10 @@ export class UserService {
     return firebase.auth().currentUser;
   }
 
+  getUserById(id) {
+    return this.userCollection.doc(id).valueChanges();
+  }
+
   updateUserProfile(userProfile) {
     var currentUser = this.getCurrentUser();
     currentUser.updateProfile({
