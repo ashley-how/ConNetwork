@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title color="secondary" style="font-family: monospace;">
-        HOME
+      HOME
     </ion-title>
   </ion-toolbar>
 
@@ -13,38 +13,51 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  
+
 </ion-header>
 
 <ion-content>
   <ion-card *ngFor="let event of events">
     <ion-card-header>
-      <ion-card-title>{{ event.eventName }}</ion-card-title>
+      <ion-grid>
+        <ion-row>
+          <ion-card-title>{{ event.eventName }}</ion-card-title>
+        </ion-row>
+      </ion-grid>
     </ion-card-header>
+
     <ion-card-content>
-      <div class="row">
-        <ion-icon name="pin"></ion-icon> {{ event.location }}
-      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <ion-row>
+              <ion-icon name="pin"></ion-icon> {{ event.location }}
+            </ion-row>
 
-      <div class="row">
-        <ion-icon name="calendar"></ion-icon> {{ event.startDate }} - {{ event.endDate }}, {{ event.startTime }} hrs
-      </div>
+            <ion-row>
+              <ion-icon name="calendar"></ion-icon> {{ event.startDate }} - {{ event.endDate }}, {{ event.startTime }}
+              hrs
+            </ion-row>
 
-      <div class="row">
-        <ion-icon name="document"></ion-icon> {{ event.details }}
-      </div>
+            <ion-row>
+              <ion-icon name="document"></ion-icon> {{ event.details }}
+            </ion-row>
+          </ion-col>
 
-      <div class="row">
-          <ion-button *ngIf="!isEventRegistered(event); else elseBlock" expand="full" type="button" (click)="registerForEvent(event)">
-            Register
-          </ion-button>
-
-          <ng-template #elseBlock>
-            <ion-button expand="full" color="light" type="button" disabled>
-              Registered
+          <ion-col>
+            <ion-button *ngIf="!isEventRegistered(event); else elseBlock" expand="full" type="button"
+              (click)="registerForEvent(event)">
+              Register
             </ion-button>
-          </ng-template>
-      </div>
+
+            <ng-template #elseBlock>
+              <ion-button expand="full" color="light" type="button" disabled>
+                Registered
+              </ion-button>
+            </ng-template>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>

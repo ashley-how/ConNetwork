@@ -28,7 +28,6 @@ import { AddInterestPageModule } from '../app/modal/add-interest/add-interest.mo
 import { EditProfilePageModule } from '../app/modal/edit-profile/edit-profile.module';
 import { EditWorkPageModule } from '../app/modal/edit-work/edit-work.module';
 import { EditSchoolPageModule } from '../app/modal/edit-school/edit-school.module';
-import { EditInterestPageModule } from '../app/modal/edit-interest/edit-interest.module';
 
 import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
@@ -54,7 +53,6 @@ import { IonicStorageModule } from '@ionic/storage';
     EditProfilePageModule,
     EditWorkPageModule,
     EditSchoolPageModule,
-    EditInterestPageModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,

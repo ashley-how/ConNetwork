@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ModalController, LoadingController } from '@ionic/angular';
-import { EventsService } from 'src/app/services/events.service';
+import { EventService } from 'src/app/services/event.service';
 import * as moment from 'moment';
 
 @Component({
@@ -25,7 +25,7 @@ export class CreateEventPage implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private modalCtrl: ModalController,
-    private eventService: EventsService, 
+    private eventService: EventService, 
     private loadingCtrl: LoadingController
     ) {
     this.createEventForm = this.fb.group({

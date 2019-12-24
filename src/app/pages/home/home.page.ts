@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController, LoadingController, ToastController } from '@ionic/angular';
-import { EventsService } from 'src/app/services/events.service';
+import { EventService } from 'src/app/services/event.service';
 import { Observable } from 'rxjs';
 import { Event } from '../../model/Event';
 import { AuthService } from 'src/app/services/auth.service';
@@ -17,7 +17,7 @@ export class HomePage {
   myEvents: Event[] = [];
 
   constructor(
-    public navCtrl: NavController, private eventsService: EventsService,
+    public navCtrl: NavController, private eventsService: EventService,
     private authService: AuthService, private loadingCtrl: LoadingController,
     private toastCtrl: ToastController, private userService: UserService) { }
 

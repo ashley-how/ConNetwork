@@ -16,19 +16,25 @@
   <br>
   <div class="list">
     <div class="top">
-      <ion-avatar class="profile-picture big-profile-picture">
+      <ion-avatar class="profile-picture">
         <ion-img src="assets/icon/profile-avatar.png"></ion-img>
       </ion-avatar>
     </div>
   </div>
 
   <ion-toolbar>
-    <div class="profile-name">
-      {{ currentUser.displayName }}
-    </div>
-    <div class="profile-email">
-      {{ currentUser.email }}
-    </div>
+    <ion-row>
+      <div class="profile-name">
+        {{ currentUser.displayName }}
+      </div>
+    </ion-row>
+
+    <ion-row>
+      <div class="profile-email">
+        {{ currentUser.email }}
+      </div>
+    </ion-row>
+    
     <ion-buttons slot="end">
       <ion-button size="small" shape="round" color="medium" (click)="openEditProfileModal()">
         <ion-icon name="create"></ion-icon>
@@ -52,8 +58,10 @@
 
       <ion-row *ngFor="let work of works">
         <ion-icon name="briefcase"></ion-icon>
-        <span *ngIf="work.jobTitle != ''">{{ work.jobTitle }} @</span>
-        <b>{{ work.companyName }}</b>
+        <span>
+          <ion-text *ngIf="work.jobTitle != ''">{{ work.jobTitle }} @ </ion-text>
+          <strong>{{ work.companyName }}</strong>
+        </span>
       </ion-row>
 
       <ion-row>
@@ -93,12 +101,6 @@
         <ion-row>
           <ion-label style="font-size:x-large">Interests</ion-label>
         </ion-row>
-
-        <ion-buttons slot="end">
-          <ion-button size="small" shape="round" color="medium" (click)="openEditInterestModal()">
-            <ion-icon name="create"></ion-icon>
-          </ion-button>
-        </ion-buttons>
       </ion-toolbar>
 
       <ion-row>

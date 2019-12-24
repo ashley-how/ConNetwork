@@ -5,11 +5,9 @@ import { UserService } from 'src/app/services/user.service';
 import { EditProfilePage } from 'src/app/modal/edit-profile/edit-profile.page';
 import { EditWorkPage } from 'src/app/modal/edit-work/edit-work.page';
 import { EditSchoolPage } from 'src/app/modal/edit-school/edit-school.page';
-import { EditInterestPage } from 'src/app/modal/edit-interest/edit-interest.page';
 import { AddWorkPage } from 'src/app/modal/add-work/add-work.page';
 import { AddSchoolPage } from 'src/app/modal/add-school/add-school.page';
 import { AddInterestPage } from 'src/app/modal/add-interest/add-interest.page';
-import { Work } from 'src/app/model/work';
 
 @Component({
   selector: 'app-profile',
@@ -96,13 +94,6 @@ export class ProfilePage {
       component: EditSchoolPage
     });
     editSchoolModal.present();
-  }
-
-  async openEditInterestModal() {
-    const editInterestModal = await this.modalCtrl.create({
-      component: EditInterestPage
-    });
-    editInterestModal.present();
   }
 
   async logout() {

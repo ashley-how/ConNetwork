@@ -1,16 +1,56 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Event Name</ion-title>
-
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <ion-button size="small" shape="round" color="medium" (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
 
+    <ion-title color="secondary" style="font-family: monospace;">
+      ATTENDING
+    </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <ion-toolbar color="secondary">
+    <ion-title>Recommended</ion-title>
+  </ion-toolbar>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Recommended user</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-toolbar color="secondary">
+    <ion-title>All</ion-title>
+  </ion-toolbar>
+
+  <ion-card class='flex-row flex-wrap' *ngFor="let participant of allParticipants">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <ion-avatar class="profile-picture">
+            <ion-img src="assets/icon/profile-avatar.png"></ion-img>
+          </ion-avatar>
+        </ion-col>
+
+        <ion-col>
+          <ion-row>
+            <ion-icon name="contact"></ion-icon> {{ participant.fullName }}
+          </ion-row>
+
+          <ion-row>
+            <ion-icon name="mail"></ion-icon> {{ participant.email }}
+          </ion-row>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>
