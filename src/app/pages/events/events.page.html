@@ -8,7 +8,7 @@
 
 <ion-content>
   <ion-toolbar color="secondary">
-    <ion-title>Events Registered</ion-title>
+    <ion-title>Upcoming events</ion-title>
   </ion-toolbar>
 
   <ion-card *ngFor="let event of myEvents" (click)="openEventInfoModal(event)">
@@ -42,6 +42,6 @@
   </ion-card>
 
   <ion-toolbar color="secondary">
-    <ion-title>Expired Events</ion-title>
+    <ion-title>Past events</ion-title>
   </ion-toolbar>
 </ion-content>

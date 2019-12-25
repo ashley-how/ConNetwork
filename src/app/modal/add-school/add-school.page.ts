@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController, ToastController, LoadingController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-school',
@@ -11,17 +14,29 @@ import { UserService } from 'src/app/services/user.service';
 export class AddSchoolPage implements OnInit {
   addSchoolForm: FormGroup;
   currentUser;
+  headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8')
+
+  searchResults = [];
 
   timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
 
   maxEndDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 4)) - this.timezoneOffset)).toISOString();
+
+  search = (text: Observable<string>) =>
+  text.pipe(
+    debounceTime(200),
+    distinctUntilChanged(),
+    map(term => term.length < 3 ? []
+      : this.httpClient.get("http://universities.hipolabs.com/search").filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+  )
 
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private userService: UserService
+    private userService: UserService,
+    private httpClient: HttpClient
   ) {
     this.currentUser = this.userService.getCurrentUser();
     this.addSchoolForm = this.fb.group({
@@ -53,6 +68,23 @@ export class AddSchoolPage implements OnInit {
       toast.present();
     });
     this.modalCtrl.dismiss();
+  }
+
+  searchSchool(event) {
+    console.log(event.target.value);
+    this.httpClient.get("http://universities.hipolabs.com/search", {
+      headers: this.headers,
+      params: {
+        name: event.target.value
+      }
+    }).subscribe(res => {
+      console.log("Result of university search API: ", res);
+      this.searchResults.push(res);
+      console.log("Search result list: ", this.searchResults);
+    });
+    return this.searchResults.filter(item => {
+      return item.name.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1;
+    });
   }
 
   closeModal() {
