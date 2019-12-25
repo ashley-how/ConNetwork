@@ -22,14 +22,6 @@ export class AddSchoolPage implements OnInit {
 
   maxEndDate: string = (new Date((new Date().setFullYear(new Date().getFullYear() + 4)) - this.timezoneOffset)).toISOString();
 
-  search = (text: Observable<string>) =>
-  text.pipe(
-    debounceTime(200),
-    distinctUntilChanged(),
-    map(term => term.length < 3 ? []
-      : this.httpClient.get("http://universities.hipolabs.com/search").filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-  )
-
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController,
