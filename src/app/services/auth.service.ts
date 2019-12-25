@@ -24,7 +24,12 @@ export class AuthService {
             displayName: user.fullName
           });
 
-          this.afs.doc(`users/${createdUser.user.uid}`).set({userId: createdUser.user.uid});
+          var userProfile = {
+            email: user.email,
+            name: user.fullName 
+          }
+
+          this.afs.doc(`users/${createdUser.user.uid}`).set(userProfile);
         })
       })
       .catch(error => {
@@ -50,31 +55,5 @@ export class AuthService {
 
   logout() {
     return this.afAuth.auth.signOut();
-  }
-
-  /**
-   * LinkedIn Login Services
-   */
-  getCustomToken(email) {
-    return this.http.post(
-      "https://us-central1-linkedin-auth-ff668.cloudfunctions.net/getCredential", {
-        email: email
-      }, {}
-    );
-  }
-
-  signInWithToken(token) {
-    return this.afAuth.auth.signInWithCustomToken(token);
-  }
-  
-  updateUserInfo(user) {
-    const updateProfilePromise = this.afAuth.auth.currentUser.updateProfile({
-      displayName: user.displayName,
-      photoURL: user.profile
-    });
-    const updateEmailPromise = this.afAuth.auth.currentUser.updateEmail(
-      user.email
-    );
-    return Promise.all([updateProfilePromise, updateEmailPromise]);
   }
 }
