@@ -22,7 +22,12 @@
   <form [formGroup]="addSchoolForm" (ngSubmit)="saveChanges()">
     <ion-toolbar>
       <ion-item>
-        <ion-input type="text" formControlName="schoolName" placeholder="School Name"></ion-input>
+        <!-- <ion-input type="text" formControlName="schoolName" placeholder="School Name"></ion-input> -->
+        <ion-input type="text" debounce="500" (ionChange)="searchSchool($event)"
+          formControlName="schoolName" placeholder="School Name"></ion-input>
+        <ion-list *ngIf="searchResults.length != 0">
+          <ion-item *ngFor="let school of searchResults">{{ school }}</ion-item>
+        </ion-list>
       </ion-item>
 
       <ion-item>

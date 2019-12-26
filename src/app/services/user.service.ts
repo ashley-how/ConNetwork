@@ -29,6 +29,9 @@ export class UserService {
       displayName: userProfile.displayName,
       photoURL: userProfile.photoURL
     });
+
+    this.updateUserInfo(userProfile.displayName)
+
     return currentUser;
   }
 
@@ -53,5 +56,12 @@ export class UserService {
   addUserInfo(sectionInfo, section) {
     var currentUser = this.getCurrentUser();
     this.userCollection.doc(currentUser.uid).collection(section).add(sectionInfo);
+  }
+
+  updateUserInfo(newName) {
+    var currentUser = this.getCurrentUser();
+    this.userCollection.doc(currentUser.uid).update({
+      name: newName
+    });
   }
 }

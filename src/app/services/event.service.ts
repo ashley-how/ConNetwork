@@ -87,6 +87,14 @@ export class EventService {
     return;
   }
 
+  removeParticipant(eventId: string, userId: string) : Promise < void > {
+    this.getEvent(eventId).subscribe(event => {
+      event.participants.splice(event.participants.indexOf(userId), 1);
+      this.eventCollection.doc(eventId).update(event);
+    });
+    return;
+  }
+
   isEventRegisteredByUser(event: Event): boolean {
     var user = this.userService.getCurrentUser();
     return event.participants.includes(user.uid);
