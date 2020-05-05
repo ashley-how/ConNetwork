@@ -6,7 +6,10 @@
 $ npm install
 $ npm install -g @ionic/cli
 ```
-4. cd to ConNetwork folder
+4. Change directory to ConNetwork folder
+```shell
+$ cd ConNetwork
+```
 5. Run
 ```shell
 $ ionic serve
