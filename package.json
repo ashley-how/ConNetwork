@@ -48,7 +48,7 @@
     "cordova-sqlite-storage": "^3.4.1",
     "core-js": "^2.5.4",
     "firebase": "^6.6.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ng2-cordova-oauth": "0.0.8",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
